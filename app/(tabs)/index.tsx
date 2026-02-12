@@ -1,98 +1,84 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { ScrollView, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <SafeAreaView
+      className="flex-1 bg-slate-100"
+      edges={["top", "left", "right"]}
+    >
+      <ScrollView className="flex-1">
+        <View className="p-6">
+          {/* Header Section */}
+          <View className="mb-6">
+            <Text className="text-4xl font-bold text-white mb-2">
+              NativeWind Test
+            </Text>
+            <Text className="text-lg text-gray-600">
+              Testing TailwindCSS styling
+            </Text>
+          </View>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+          {/* Color Boxes */}
+          <View className="mb-6">
+            <Text className="text-xl font-semibold text-gray-800 mb-3">
+              Color Test
+            </Text>
+            <View className="flex-row flex-wrap gap-3">
+              <View className="w-24 h-24 bg-red-500 rounded-xl items-center justify-center">
+                <Text className="text-white font-bold">Red</Text>
+              </View>
+              <View className="w-24 h-24 bg-blue-500 rounded-xl items-center justify-center">
+                <Text className="text-white font-bold">Blue</Text>
+              </View>
+              <View className="w-24 h-24 bg-green-500 rounded-xl items-center justify-center">
+                <Text className="text-white font-bold">Green</Text>
+              </View>
+              <View className="w-24 h-24 bg-purple-500 rounded-xl items-center justify-center">
+                <Text className="text-white font-bold">Purple</Text>
+              </View>
+            </View>
+          </View>
+
+          {/* Card Example */}
+          <View className="mb-6">
+            <Text className="text-xl font-semibold text-gray-800 mb-3">
+              Card Example
+            </Text>
+            <View className="bg-white rounded-2xl p-6 shadow-lg">
+              <Text className="text-2xl font-bold text-gray-900 mb-2">
+                Welcome! 👋
+              </Text>
+              <Text className="text-base text-gray-600 mb-4">
+                If you see colors and rounded corners, NativeWind is working!
+              </Text>
+              <View className="bg-blue-500 py-3 px-6 rounded-lg">
+                <Text className="text-white text-center font-semibold">
+                  Button Example
+                </Text>
+              </View>
+            </View>
+          </View>
+
+          {/* Spacing Test */}
+          <View className="mb-6">
+            <Text className="text-xl font-semibold text-gray-800 mb-3">
+              Spacing & Layout Test
+            </Text>
+            <View className="bg-white rounded-xl p-4">
+              <View className="mb-2 p-2 bg-orange-100 rounded">
+                <Text className="text-orange-800">Padding & Margin</Text>
+              </View>
+              <View className="mb-2 p-2 bg-teal-100 rounded">
+                <Text className="text-teal-800">working correctly</Text>
+              </View>
+              <View className="p-2 bg-pink-100 rounded">
+                <Text className="text-pink-800">with TailwindCSS! ✨</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
