@@ -1,4 +1,6 @@
+import { glassTheme } from "@/constants/glass-theme";
 import { Ionicons } from "@expo/vector-icons";
+import { BlurView } from "expo-blur";
 import React, {
   createContext,
   useCallback,
@@ -7,7 +9,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Animated, Pressable, Text, View } from "react-native";
+import { Animated, Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type ToastVariant = "success" | "error" | "info";
@@ -128,19 +130,28 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               style={{
                 opacity,
                 transform: [{ translateY }],
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "rgba(255,255,255,0.42)",
                 borderRadius: 16,
                 paddingVertical: 12,
                 paddingHorizontal: 14,
                 borderLeftWidth: 4,
                 borderLeftColor: style.accent,
-                shadowColor: "#000",
-                shadowOpacity: 0.12,
-                shadowRadius: 18,
+                borderWidth: 1,
+                borderColor: "rgba(255,255,255,0.78)",
+                shadowColor: glassTheme.shadow,
+                shadowOpacity: 0.22,
+                shadowRadius: 20,
                 shadowOffset: { width: 0, height: 10 },
                 elevation: 10,
+                overflow: "hidden",
               }}
             >
+              <BlurView
+                intensity={42}
+                tint="light"
+                style={StyleSheet.absoluteFill}
+              />
+              <View pointerEvents="none" style={styles.toastGloss} />
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Ionicons
                   name={style.icon}
@@ -154,6 +165,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
                     color: "#0F172A",
                     fontSize: 14,
                     lineHeight: 20,
+                    fontFamily: "Manrope_500Medium",
                   }}
                   numberOfLines={3}
                 >
@@ -167,6 +179,17 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     </ToastContext.Provider>
   );
 }
+
+const styles = StyleSheet.create({
+  toastGloss: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    height: "55%",
+    backgroundColor: "rgba(255,255,255,0.26)",
+  },
+});
 
 export function useToast() {
   const toast = useContext(ToastContext);

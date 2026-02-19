@@ -37,24 +37,26 @@ const styles = StyleSheet.create({
   default: {
     fontSize: 16,
     lineHeight: 24,
+    fontFamily: "Manrope_500Medium",
   },
   defaultSemiBold: {
     fontSize: 16,
     lineHeight: 24,
-    fontWeight: '600',
+    fontFamily: "Manrope_600SemiBold",
   },
   title: {
     fontSize: 32,
-    fontWeight: 'bold',
+    fontFamily: "Manrope_800ExtraBold",
     lineHeight: 32,
   },
   subtitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: "Manrope_700Bold",
   },
   link: {
     lineHeight: 30,
     fontSize: 16,
     color: '#0a7ea4',
+    fontFamily: "Manrope_600SemiBold",
   },
 });
