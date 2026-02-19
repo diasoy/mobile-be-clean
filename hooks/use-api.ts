@@ -70,7 +70,6 @@ export const useCreatePost = () => {
       return response.json();
     },
     onSuccess: () => {
-      // Invalidate posts query to refetch the list
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
   });

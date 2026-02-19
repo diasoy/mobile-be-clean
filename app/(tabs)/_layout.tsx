@@ -1,7 +1,6 @@
 import { Redirect, Tabs } from "expo-router";
 import React from "react";
 
-import { HapticTab } from "@/components/haptic-tab";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { Colors } from "@/constants/theme";
 import { useAuth } from "@/context/AuthContext";
@@ -28,11 +27,17 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarStyle: {
-          backgroundColor: colorScheme === "dark" ? "#000" : "#fff",
+        headerStyle: {
+          backgroundColor: "#FFFFFF", 
+          elevation: 5, 
+          shadowOpacity: 0.1, 
         },
+        headerTintColor: "#000000", 
+        headerTitleStyle: {
+          fontWeight: "bold",
+          fontSize: 18,
+        },
+        headerTitleAlign: "center",
       }}
     >
       <Tabs.Screen
@@ -40,25 +45,34 @@ export default function TabLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
+            <IconSymbol size={28} name="homepod.2.fill" color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="order"
         options={{
-          title: "Explore",
+          title: "Order",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+            <IconSymbol size={28} name="cart.fill" color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="service"
         options={{
-          title: "Akun",
+          title: "Atur Layanan",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="person.fill" color={color} />
+            <IconSymbol size={28} name="service.dog.fill" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="rekap"
+        options={{
+          title: "Rekap",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="list.bullet.rectangle" color={color} />
           ),
         }}
       />
